@@ -1,5 +1,13 @@
 #include<stdio.h>
 #include<locale.h>
+#define SIZE 20
+typedef struct _Node {
+    char title[SIZE];
+    char type[SIZE];
+    int price;
+    struct _Node *next;
+    struct _Node *prev;
+} Node;//Создание нового типа Node на основе структуры
 int main(void){
     setlocale(LC_ALL,"Rus");
     int a;
