@@ -12,12 +12,13 @@ typedef struct _Node {
 typedef struct _DLinkedList{
     Node *head;//Голова списка
     Node *tail;//Хвост списка
+    size_t size;//Размер списка
 }DLinkedList;//Хранение размера списка
 
 
 DLinkedList* createLinkedList();//Создание списка
 void showDLList();//Просмотр списка
-void pushNode(DLinkedList *list, void *data);//Добавление в начало списка новой записи
+void pushNode(DLinkedList *list);//Добавление в начало списка новой записи
 void findCorrect(DlinkedList *list);//Поиск и корректировка записи(узла)
 void deleteNode(DlinkedList *list);//Удаление записи(узла)
 void saveToFile(DlinkedList *list);//Сохранение списка в файл
@@ -52,8 +53,33 @@ int main(void){
         case 6:NULL;break;
         case 7:NULL;break;
         case 8:return 0;
-        default: printf("Неверная команда\n\n");break;
+        default:
+            printf("Неверная команда\n\n");
+            getchar();
+            break;
         }
     }
 
 }
+
+
+DLinkedList* createLinkedList(){
+    DLinkedList *tmp =(DLinkedList*)malloc(sizeof(DLinkedList));
+    if(tmp == NULL)exit(1);
+    tmp ->size = 0;//Указатель на размер
+    tmp->head = tmp->tail = NULL;//Инициализация указателя на голову списка и хвост
+    return tmp;
+}
+
+
+
+void showDLList(DLinkedList* list){
+    Node *tmp = list->head;//Указатель ссылается на первый элемент
+    int counter = 1;
+    while(tmp){
+        printf("%d.%s\n%s\n%d\n\n",counter,tmp->title,tmp->type,tmp->price);
+        counter++;
+    }
+}
+
+
