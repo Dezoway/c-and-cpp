@@ -5,23 +5,42 @@ typedef struct _Node {
     char title[SIZE];
     char type[SIZE];
     int price;
-    struct _Node *next;
-    struct _Node *prev;
-} Node;//РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ С‚РёРїР° Node РЅР° РѕСЃРЅРѕРІРµ СЃС‚СЂСѓРєС‚СѓСЂС‹
+    struct _Node *next;//Указатель на следующий узел
+    struct _Node *prev;//Указатель на предыдущий узел
+} Node;//Создание узла списка
+
+typedef struct _DLinkedList{
+    Node *head;//Голова списка
+    Node *tail;//Хвост списка
+}DLinkedList;//Хранение размера списка
+
+
+DLinkedList* createLinkedList();//Создание списка
+void showDLList();//Просмотр списка
+void pushNode(DLinkedList *list, void *data);//Добавление в начало списка новой записи
+void findCorrect(DlinkedList *list);//Поиск и корректировка записи(узла)
+void deleteNode(DlinkedList *list);//Удаление записи(узла)
+void saveToFile(DlinkedList *list);//Сохранение списка в файл
+void loadToList(DlinkedList *list);//Загрузка списка из файла
+void exit(DlinkedList *list);//Выход
+
+
+
+
 int main(void){
     setlocale(LC_ALL,"Rus");
     int a;
     while(1!=0){
-        printf("Р’С‹Р±РµСЂРёС‚Рµ Р¶РµР»Р°РµРјРѕРµ РґРµР№СЃС‚РІРёРµ:\n");
-        printf("1. РЎРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР°.\n");
-        printf("2. РџСЂРѕСЃРјРѕС‚СЂ СЃРїРёСЃРєР°.\n");
-        printf("3. Р”РѕР±Р°РІР»РµРЅРёРµ РІ СЃРїРёСЃРѕРє РЅРѕРІРѕР№ Р·Р°РїРёСЃРёСЋ\n");
-        printf("4. РџРѕРёСЃРє Рё РєРѕСЂСЂРµРєС‚РёСЂРѕРІРєР° Р·Р°РїРёСЃРё РІ СЃРїРёСЃРєРµ.\n");
-        printf("5. РЈРґР°Р»РµРЅРёРµ Р·Р°РїРёСЃРё РёР· СЃРїРёСЃРєР°.\n");
-        printf("6. РЎРѕС…СЂР°РЅРµРЅРёРµ СЃРїРёСЃРєР° РІ С„Р°Р№Р»Рµ.\n");
-        printf("7. Р—Р°РіСЂСѓР·РєР° СЃРїРёСЃРєР° РёР· С„Р°Р№Р»Р°.\n");
-        printf("8. Р’С‹С…РѕРґ\n");
-        printf("Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ: ");
+        printf("Выберите желаемое действие:\n");
+        printf("1. Создание списка.\n");
+        printf("2. Просмотр списка.\n");
+        printf("3. Добавление в список новой записию\n");
+        printf("4. Поиск и корректировка записи в списке.\n");
+        printf("5. Удаление записи из списка.\n");
+        printf("6. Сохранение списка в файле.\n");
+        printf("7. Загрузка списка из файла.\n");
+        printf("8. Выход\n");
+        printf("Введите число: ");
         scanf("%d",&a);
         printf("\n");
         switch(a){
@@ -33,7 +52,7 @@ int main(void){
         case 6:NULL;break;
         case 7:NULL;break;
         case 8:return 0;
-        default: printf("РќРµРІРµСЂРЅР°СЏ РєРѕРјР°РЅРґР°\n\n");break;
+        default: printf("Неверная команда\n\n");break;
         }
     }
 
