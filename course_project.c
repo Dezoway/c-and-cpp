@@ -17,23 +17,19 @@ typedef struct _DLinkedList{
     size_t size;//Размер списка
 }DLinkedList;//Хранение размера списка
 
-
 DLinkedList* createLinkedList();//Создание списка
 void showDLList();//Просмотр списка
-void pushNode(DLinkedList *list);//Добавление в список новой записи
-// void sorted(DlinkedList *list);//Сортировка записей
-//void findCorrect(DlinkedList *list);//Поиск и корректировка записи(узла)
-//void deleteNode(DlinkedList *list);//Удаление записи(узла)
-//void saveToFile(DlinkedList *list);//Сохранение списка в файл
-//void loadToList(DlinkedList *list);//Загрузка списка из файла
-//void exit(DlinkedList *list);//Выход
-
-
-
-
+void pushNode(DLinkedList* list);//Добавление новой записи
+void insertIn(DLinkedList* list,Node* tmp);//Вставка записи в список по возрастанию
+int findCorrect(DLinkedList* list, char* title);//Поиск и корректировка записи(узла)
+//void deleteNode(DLinkedList *list);//Удаление записи(узла)
+//void saveToFile(DLinkedList *list);//Сохранение списка в файл
+//void loadToList(DLinkedList *list);//Загрузка списка из файла
+//void exit(DLinkedList *list);//Выход
 int main(void){
     setlocale(LC_ALL,"Rus");
     int a;
+    char title[SIZE];
     DLinkedList *list = NULL;
     while(1!=0){
         system("cls");
@@ -62,7 +58,7 @@ int main(void){
             showDLList(list);
             }
             else{
-                printf("Элементы списка не обнаружены. Загрузите список из файла либо создайте список и  добавьте элементы вручную\n");
+                printf("Издания не обнаружены. Загрузите список изданий из файла либо создайте список и  добавьте элементы вручную\n");
                 system("pause");
             }
             ;break;
@@ -70,11 +66,28 @@ int main(void){
             if(list){
                 system("cls");
                 pushNode(list);
+                printf("Издание успешно добавлено.\n");
+                system("pause");
             }
-            else printf("Список не обнаружен, создайте список.");
-
+            else{
+                system("cls");
+                printf("Список не обнаружен, создайте список.");
+                system("pause");
+            }
             ;break;
-        case 4:NULL;break;
+        case 4:
+            system("cls");
+            printf("Введите название издания: ");
+            scanf("%s",&title);
+            if(findCorrect(list,title)){
+                printf("Запись успешно изменена.\n");
+                system("pause");
+            }
+            else{
+                printf("Запись не найдена.\n");
+                system("pause");
+            }
+            ;break;
         case 5:NULL;break;
         case 6:NULL;break;
         case 7:NULL;break;
@@ -89,12 +102,12 @@ int main(void){
 
 }
 
-
 DLinkedList* createLinkedList(){
     DLinkedList *tmp =(DLinkedList*)malloc(sizeof(DLinkedList));
     tmp ->size = 0;//Указатель на размер
     tmp->head = tmp->tail = NULL;//Инициализация указателя на голову списка и хвост
     pushNode(tmp);
+    tmp->size ++;
     return tmp;
 }
 
@@ -146,6 +159,80 @@ void pushNode(DLinkedList* list){
         tmp->next = NULL;
         tmp->prev = NULL;
     }
+    else insertIn(list,tmp);
+}
 
+void insertIn(DLinkedList* list, Node* temp){
+    Node *temp2 = list->head;
+    while(temp2){
+        if(strcmp(temp->title,temp2->title) == 1){
+            if(temp2->next == NULL){    //Если текущий элемент является последним(хвост)
+                temp->next = NULL;
+                temp->prev = list->tail;
+                temp2->next = temp;
+                list->tail = temp;
+                return;
+            }
+            else temp2 = temp2->next;   //Иначе переход на следующий элемент
+        }
+        else{
+            if(list->head==temp2){  // Если текущий элемент является первым(голова)
+                temp->next = list->head;
+                temp->prev = NULL;
+                list->head->prev = temp;
+                list->head = temp;
+                return;
+            }
+            else{
+                temp->next = temp2; // Если текущий эелемент расположен между соседних элементов
+                temp->prev = temp2->prev;
+                temp2->prev->next = temp;
+                temp2->prev = temp;
+                return;
+            }
+        }
+
+    }
+}
+
+int findCorrect(DLinkedList* list, char* title){
+    Node* tmp = list->head;
+    while(tmp){
+        if(strcmp(tmp->title,title)==0){ // Если название издания в списке и в образце равны то изменить запись
+            int choice;
+            while(1 != 0){
+                system("cls");
+                printf("Запись найдена.\nВыберите поле которое хотите изменить\n");
+                printf("1. Название\n2. Тип издания\n3. Цена\nВведите число: ");
+                scanf("%d",&choice);
+                if(choice != 1 && choice != 2 && choice !=3 ){
+                    printf("Некорректный ввод.");
+                    system("pause");
+                }
+                else{
+                    if(choice == 1){
+                        char name[SIZE];
+                        printf("Введите название: ");
+                        scanf("%s",&name);
+                        strcpy(tmp->title,name);
+                    }
+                    else if (choice == 2){
+                        char type[SIZE];
+                        printf("Введите тип издания: ");
+                        scanf("%s",&type);
+                        strcpy(tmp->type,type);
+                    }
+                    else if (choice == 3){
+                        int price;
+                        printf("Введите цену: ");
+                        scanf("%d",&price);
+                        tmp->price = price;
+                    }
+                    return 1;
+                    }
+                }
+            }
+            tmp = tmp->next;
+        }return 0;
 }
 
