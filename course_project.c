@@ -22,8 +22,8 @@ void showDLList();//Просмотр списка
 void pushNode(DLinkedList* list);//Добавление новой записи
 void insertIn(DLinkedList* list,Node* tmp);//Вставка записи в список по возрастанию
 int findCorrect(DLinkedList* list, char* title);//Поиск и корректировка записи(узла)
-//void deleteNode(DLinkedList *list);//Удаление записи(узла)
-//void saveToFile(DLinkedList *list);//Сохранение списка в файл
+int deleteNode(DLinkedList *list, char* title);//Удаление записи(узла)
+int saveToFile(DLinkedList *list);//Сохранение списка в файл
 //void loadToList(DLinkedList *list);//Загрузка списка из файла
 //void exit(DLinkedList *list);//Выход
 int main(void){
@@ -54,7 +54,7 @@ int main(void){
         }
         case 2:
             system("cls");
-            if (list != NULL){
+            if (list != NULL && list->head->title != NULL){
             showDLList(list);
             }
             else{
@@ -78,7 +78,7 @@ int main(void){
         case 4:
             system("cls");
             printf("Введите название издания: ");
-            scanf("%s",&title);
+            scanf("%s",title);
             if(findCorrect(list,title)){
                 printf("Запись успешно изменена.\n");
                 system("pause");
@@ -88,8 +88,33 @@ int main(void){
                 system("pause");
             }
             ;break;
-        case 5:NULL;break;
-        case 6:NULL;break;
+        case 5:
+            system("cls");
+            if(list){
+                printf("Введите название издания: ");
+                scanf("%s",title);
+                if(deleteNode(list,title)){
+                    printf("Запись успешно удалена.\n");
+                    system("pause");
+                }
+                else{
+                    printf("Запись не найлена.\n");
+                    system("pause");
+                }
+            }
+            else {printf("Издания не обнаружены, создайте список изданий вручную либо загрузите из файла.\n");
+            system("pause");}
+            break;
+        case 6:
+            system("cls");
+            if (list != NULL && list->head->title != NULL){
+                if(saveToFile(list)){printf("Издания успешно сохранены.\n");system("pause");}
+                else{printf("Список пуст, создайте список изданий вручную либо загрузите из файла.\n");system("pause");}
+            }
+
+
+
+            ;break;
         case 7:NULL;break;
         case 8:return 0;
         default:
@@ -99,7 +124,6 @@ int main(void){
             break;
         }
     }
-
 }
 
 DLinkedList* createLinkedList(){
@@ -131,8 +155,8 @@ void pushNode(DLinkedList* list){
         printf("Нехватка памяти.");
         exit(2);
     }
-    printf("Введите название издания: ");
-    scanf("%s",tmp->title);
+    printf("Введите название издания на английском без пробелов: ");
+    scanf("%s",&tmp->title);
     while(choice != 1 && choice !=2){
         system("cls");
         printf("Выберите тип издания:\n1. Газета\n2. Журнал\nВведите число:");
@@ -191,7 +215,6 @@ void insertIn(DLinkedList* list, Node* temp){
                 return;
             }
         }
-
     }
 }
 
@@ -212,15 +235,18 @@ int findCorrect(DLinkedList* list, char* title){
                 else{
                     if(choice == 1){
                         char name[SIZE];
-                        printf("Введите название: ");
+                        printf("Введите название издания на английском без пробелов: ");
                         scanf("%s",&name);
                         strcpy(tmp->title,name);
                     }
                     else if (choice == 2){
-                        char type[SIZE];
-                        printf("Введите тип издания: ");
-                        scanf("%s",&type);
-                        strcpy(tmp->type,type);
+                        system("cls");
+                        printf("Выберите тип издания:\n1. Газета\n2. Журнал\nВведите число:");
+                        int choice2;
+                        scanf("%d",&choice2);
+                        if(choice2 == 1)strcpy(tmp->type,"Газета");
+                        else if (choice2 == 2)strcpy(tmp->type, "Журнал");
+                        else{printf("Некорректный ввод.\n");system("pause");continue;}
                     }
                     else if (choice == 3){
                         int price;
@@ -232,7 +258,53 @@ int findCorrect(DLinkedList* list, char* title){
                     }
                 }
             }
-            tmp = tmp->next;
+            else tmp = tmp->next;
         }return 0;
 }
 
+int deleteNode(DLinkedList* list, char* title){
+    Node* tmp = list->head;
+    while(tmp){
+        if(strcmp(tmp->title,title) == 0){
+            if(tmp->prev){  //Если перед удаляемым элементом есть элемент
+                tmp->prev->next = tmp->next;
+            }
+            if(tmp->next){ //Если после удаляемого элемента есть элемент
+                tmp->next->prev = tmp->prev;
+            }
+            if(!tmp->prev){//Если элемент является первым(голова)
+                list->head = tmp->next;
+            }
+            if(!tmp->next){//Если элемент является последним(хвост)
+                list->tail = tmp->prev;
+            }
+            free(tmp);
+            return 1;
+        }
+        else tmp = tmp->next;
+    }
+    return 0;
+}
+
+int saveToFile(DLinkedList* list){
+    FILE *output;
+    Node *tmp = list->head;
+    char file[SIZE];
+    printf("Введите имя_файла.txt: ");
+    scanf("%s",file);
+    output = fopen(file,"wb");
+    if(output){
+        while(tmp){
+           fwrite(tmp->title,sizeof(tmp->title),1,output);
+           fwrite(tmp->type,sizeof(tmp->type),1,output);
+           fwrite(&tmp->price,sizeof(int),1,output);
+           tmp = tmp->next;
+        }
+        fclose(output);
+        return 1;
+    }
+    else printf("Ошибка! Не удалось прочитать файл\n");
+    system("pause");
+    fclose(output);
+    return 0;
+}
