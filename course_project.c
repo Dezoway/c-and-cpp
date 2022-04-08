@@ -7,25 +7,24 @@ typedef struct _Node {
     char title[SIZE];
     char type[SIZE];
     int price;
-    struct _Node *next;//Ğ£ĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»ÑŒ Ğ½Ğ° ÑĞ»ĞµĞ´ÑƒÑÑ‰Ğ¸Ğ¹ ÑƒĞ·ĞµĞ»
-    struct _Node *prev;//Ğ£ĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»ÑŒ Ğ½Ğ° Ğ¿Ñ€ĞµĞ´Ñ‹Ğ´ÑƒÑ‰Ğ¸Ğ¹ ÑƒĞ·ĞµĞ»
-} Node;//Ğ¡Ğ¾Ğ·Ğ´Ğ°Ğ½Ğ¸Ğµ ÑƒĞ·Ğ»Ğ° ÑĞ¿Ğ¸ÑĞºĞ°
+    struct _Node *next;//Óêàçàòåëü íà ñëåäóşùèé óçåë
+    struct _Node *prev;//Óêàçàòåëü íà ïğåäûäóùèé óçåë
+} Node;//Ñîçäàíèå óçëà ñïèñêà
 
 typedef struct _DLinkedList{
-    Node *head;//Ğ“Ğ¾Ğ»Ğ¾Ğ²Ğ° ÑĞ¿Ğ¸ÑĞºĞ°
-    Node *tail;//Ğ¥Ğ²Ğ¾ÑÑ‚ ÑĞ¿Ğ¸ÑĞºĞ°
-    size_t size;//Ğ Ğ°Ğ·Ğ¼ĞµÑ€ ÑĞ¿Ğ¸ÑĞºĞ°
-}DLinkedList;//Ğ¥Ñ€Ğ°Ğ½ĞµĞ½Ğ¸Ğµ Ñ€Ğ°Ğ·Ğ¼ĞµÑ€Ğ° ÑĞ¿Ğ¸ÑĞºĞ°
+    Node *head;//Ãîëîâà ñïèñêà
+    Node *tail;//Õâîñò ñïèñêà
+}DLinkedList;//Õğàíåíèå ğàçìåğà ñïèñêà
 
-DLinkedList* createLinkedList();//Ğ¡Ğ¾Ğ·Ğ´Ğ°Ğ½Ğ¸Ğµ ÑĞ¿Ğ¸ÑĞºĞ°
-void showDLList();//ĞŸÑ€Ğ¾ÑĞ¼Ğ¾Ñ‚Ñ€ ÑĞ¿Ğ¸ÑĞºĞ°
-void pushNode(DLinkedList* list);//Ğ”Ğ¾Ğ±Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ğµ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ Ğ·Ğ°Ğ¿Ğ¸ÑĞ¸
-void insertIn(DLinkedList* list,Node* tmp);//Ğ’ÑÑ‚Ğ°Ğ²ĞºĞ° Ğ·Ğ°Ğ¿Ğ¸ÑĞ¸ Ğ² ÑĞ¿Ğ¸ÑĞ¾Ğº Ğ¿Ğ¾ Ğ²Ğ¾Ğ·Ñ€Ğ°ÑÑ‚Ğ°Ğ½Ğ¸Ñ
-int findCorrect(DLinkedList* list, char* title);//ĞŸĞ¾Ğ¸ÑĞº Ğ¸ ĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²ĞºĞ° Ğ·Ğ°Ğ¿Ğ¸ÑĞ¸(ÑƒĞ·Ğ»Ğ°)
-int deleteNode(DLinkedList *list, char* title);//Ğ£Ğ´Ğ°Ğ»ĞµĞ½Ğ¸Ğµ Ğ·Ğ°Ğ¿Ğ¸ÑĞ¸(ÑƒĞ·Ğ»Ğ°)
-int saveToFile(DLinkedList *list);//Ğ¡Ğ¾Ñ…Ñ€Ğ°Ğ½ĞµĞ½Ğ¸Ğµ ÑĞ¿Ğ¸ÑĞºĞ° Ğ² Ñ„Ğ°Ğ¹Ğ»
-//void loadToList(DLinkedList *list);//Ğ—Ğ°Ğ³Ñ€ÑƒĞ·ĞºĞ° ÑĞ¿Ğ¸ÑĞºĞ° Ğ¸Ğ· Ñ„Ğ°Ğ¹Ğ»Ğ°
-//void exit(DLinkedList *list);//Ğ’Ñ‹Ñ…Ğ¾Ğ´
+DLinkedList* createLinkedList();//Ñîçäàíèå ñïèñêà
+void showDLList();//Ïğîñìîòğ ñïèñêà
+void pushNode(DLinkedList* list);//Äîáàâëåíèå íîâîé çàïèñè
+void insertIn(DLinkedList* list,Node* tmp);//Âñòàâêà çàïèñè â ñïèñîê ïî âîçğàñòàíèş
+int findCorrect(DLinkedList* list, char* title);//Ïîèñê è êîğğåêòèğîâêà çàïèñè(óçëà)
+int deleteNode(DLinkedList *list, char* title);//Óäàëåíèå çàïèñè(óçëà)
+int saveToFile(DLinkedList *list);//Ñîõğàíåíèå ñïèñêà â ôàéë
+DLinkedList* loadToList(DLinkedList *list);//Çàãğóçêà ñïèñêà èç ôàéëà
+void quit(DLinkedList *list);//Âûõîä
 int main(void){
     setlocale(LC_ALL,"Rus");
     int a;
@@ -33,22 +32,22 @@ int main(void){
     DLinkedList *list = NULL;
     while(1!=0){
         system("cls");
-        printf("Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ğ¶ĞµĞ»Ğ°ĞµĞ¼Ğ¾Ğµ Ğ´ĞµĞ¹ÑÑ‚Ğ²Ğ¸Ğµ:\n");
-        printf("1. Ğ¡Ğ¾Ğ·Ğ´Ğ°Ğ½Ğ¸Ğµ ÑĞ¿Ğ¸ÑĞºĞ°.\n");
-        printf("2. ĞŸÑ€Ğ¾ÑĞ¼Ğ¾Ñ‚Ñ€ ÑĞ¿Ğ¸ÑĞºĞ°.\n");
-        printf("3. Ğ”Ğ¾Ğ±Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ğµ Ğ² ÑĞ¿Ğ¸ÑĞ¾Ğº Ğ½Ğ¾Ğ²Ğ¾Ğ¹ Ğ·Ğ°Ğ¿Ğ¸ÑĞ¸Ñ\n");
-        printf("4. ĞŸĞ¾Ğ¸ÑĞº Ğ¸ ĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²ĞºĞ° Ğ·Ğ°Ğ¿Ğ¸ÑĞ¸ Ğ² ÑĞ¿Ğ¸ÑĞºĞµ.\n");
-        printf("5. Ğ£Ğ´Ğ°Ğ»ĞµĞ½Ğ¸Ğµ Ğ·Ğ°Ğ¿Ğ¸ÑĞ¸ Ğ¸Ğ· ÑĞ¿Ğ¸ÑĞºĞ°.\n");
-        printf("6. Ğ¡Ğ¾Ñ…Ñ€Ğ°Ğ½ĞµĞ½Ğ¸Ğµ ÑĞ¿Ğ¸ÑĞºĞ° Ğ² Ñ„Ğ°Ğ¹Ğ»Ğµ.\n");
-        printf("7. Ğ—Ğ°Ğ³Ñ€ÑƒĞ·ĞºĞ° ÑĞ¿Ğ¸ÑĞºĞ° Ğ¸Ğ· Ñ„Ğ°Ğ¹Ğ»Ğ°.\n");
-        printf("8. Ğ’Ñ‹Ñ…Ğ¾Ğ´\n");
-        printf("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾: ");
+        printf("Âûáåğèòå æåëàåìîå äåéñòâèå:\n");
+        printf("1. Ñîçäàíèå ñïèñêà.\n");
+        printf("2. Ïğîñìîòğ ñïèñêà.\n");
+        printf("3. Äîáàâëåíèå â ñïèñîê íîâîé çàïèñèş\n");
+        printf("4. Ïîèñê è êîğğåêòèğîâêà çàïèñè â ñïèñêå.\n");
+        printf("5. Óäàëåíèå çàïèñè èç ñïèñêà.\n");
+        printf("6. Ñîõğàíåíèå ñïèñêà â ôàéëå.\n");
+        printf("7. Çàãğóçêà ñïèñêà èç ôàéëà.\n");
+        printf("8. Âûõîä\n");
+        printf("Ââåäèòå ÷èñëî: ");
         scanf("%d",&a);
         switch(a){
         case 1:{
             list = createLinkedList();
             system("cls");
-            printf("Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº ÑĞ¾Ğ·Ğ´Ğ°Ğ½\n");
+            printf("Ñïèñîê ñîçäàí\n");
             system("pause");
             break;
         }
@@ -58,7 +57,7 @@ int main(void){
             showDLList(list);
             }
             else{
-                printf("Ğ˜Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ Ğ½Ğµ Ğ¾Ğ±Ğ½Ğ°Ñ€ÑƒĞ¶ĞµĞ½Ñ‹. Ğ—Ğ°Ğ³Ñ€ÑƒĞ·Ğ¸Ñ‚Ğµ ÑĞ¿Ğ¸ÑĞ¾Ğº Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ğ¹ Ğ¸Ğ· Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ»Ğ¸Ğ±Ğ¾ ÑĞ¾Ğ·Ğ´Ğ°Ğ¹Ñ‚Ğµ ÑĞ¿Ğ¸ÑĞ¾Ğº Ğ¸  Ğ´Ğ¾Ğ±Ğ°Ğ²ÑŒÑ‚Ğµ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ñ‹ Ğ²Ñ€ÑƒÑ‡Ğ½ÑƒÑ\n");
+                printf("Èçäàíèÿ íå îáíàğóæåíû. Çàãğóçèòå ñïèñîê èçäàíèé èç ôàéëà ëèáî ñîçäàéòå ñïèñîê è  äîáàâüòå ıëåìåíòû âğó÷íóş\n");
                 system("pause");
             }
             ;break;
@@ -66,60 +65,73 @@ int main(void){
             if(list){
                 system("cls");
                 pushNode(list);
-                printf("Ğ˜Ğ·Ğ´Ğ°Ğ½Ğ¸Ğµ ÑƒÑĞ¿ĞµÑˆĞ½Ğ¾ Ğ´Ğ¾Ğ±Ğ°Ğ²Ğ»ĞµĞ½Ğ¾.\n");
+                printf("Èçäàíèå óñïåøíî äîáàâëåíî.\n");
                 system("pause");
             }
             else{
                 system("cls");
-                printf("Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ½Ğµ Ğ¾Ğ±Ğ½Ğ°Ñ€ÑƒĞ¶ĞµĞ½, ÑĞ¾Ğ·Ğ´Ğ°Ğ¹Ñ‚Ğµ ÑĞ¿Ğ¸ÑĞ¾Ğº.");
+                printf("Ñïèñîê íå îáíàğóæåí, ñîçäàéòå ñïèñîê.");
                 system("pause");
             }
             ;break;
         case 4:
             system("cls");
-            printf("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ½Ğ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ: ");
+            printf("Ââåäèòå íàçâàíèå èçäàíèÿ: ");
             scanf("%s",title);
             if(findCorrect(list,title)){
-                printf("Ğ—Ğ°Ğ¿Ğ¸ÑÑŒ ÑƒÑĞ¿ĞµÑˆĞ½Ğ¾ Ğ¸Ğ·Ğ¼ĞµĞ½ĞµĞ½Ğ°.\n");
+                printf("Çàïèñü óñïåøíî èçìåíåíà.\n");
                 system("pause");
             }
             else{
-                printf("Ğ—Ğ°Ğ¿Ğ¸ÑÑŒ Ğ½Ğµ Ğ½Ğ°Ğ¹Ğ´ĞµĞ½Ğ°.\n");
+                printf("Çàïèñü íå íàéäåíà.\n");
                 system("pause");
             }
             ;break;
         case 5:
             system("cls");
             if(list){
-                printf("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ½Ğ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ: ");
+                printf("Ââåäèòå íàçâàíèå èçäàíèÿ: ");
                 scanf("%s",title);
                 if(deleteNode(list,title)){
-                    printf("Ğ—Ğ°Ğ¿Ğ¸ÑÑŒ ÑƒÑĞ¿ĞµÑˆĞ½Ğ¾ ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ°.\n");
+                    printf("Çàïèñü óñïåøíî óäàëåíà.\n");
                     system("pause");
                 }
                 else{
-                    printf("Ğ—Ğ°Ğ¿Ğ¸ÑÑŒ Ğ½Ğµ Ğ½Ğ°Ğ¹Ğ»ĞµĞ½Ğ°.\n");
+                    printf("Çàïèñü íå íàéëåíà.\n");
                     system("pause");
                 }
             }
-            else {printf("Ğ˜Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ Ğ½Ğµ Ğ¾Ğ±Ğ½Ğ°Ñ€ÑƒĞ¶ĞµĞ½Ñ‹, ÑĞ¾Ğ·Ğ´Ğ°Ğ¹Ñ‚Ğµ ÑĞ¿Ğ¸ÑĞ¾Ğº Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ğ¹ Ğ²Ñ€ÑƒÑ‡Ğ½ÑƒÑ Ğ»Ğ¸Ğ±Ğ¾ Ğ·Ğ°Ğ³Ñ€ÑƒĞ·Ğ¸Ñ‚Ğµ Ğ¸Ğ· Ñ„Ğ°Ğ¹Ğ»Ğ°.\n");
+            else {printf("Èçäàíèÿ íå îáíàğóæåíû, ñîçäàéòå ñïèñîê èçäàíèé âğó÷íóş ëèáî çàãğóçèòå èç ôàéëà.\n");
             system("pause");}
             break;
         case 6:
             system("cls");
             if (list != NULL && list->head->title != NULL){
-                if(saveToFile(list)){printf("Ğ˜Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ ÑƒÑĞ¿ĞµÑˆĞ½Ğ¾ ÑĞ¾Ñ…Ñ€Ğ°Ğ½ĞµĞ½Ñ‹.\n");system("pause");}
-                else{printf("Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿ÑƒÑÑ‚, ÑĞ¾Ğ·Ğ´Ğ°Ğ¹Ñ‚Ğµ ÑĞ¿Ğ¸ÑĞ¾Ğº Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ğ¹ Ğ²Ñ€ÑƒÑ‡Ğ½ÑƒÑ Ğ»Ğ¸Ğ±Ğ¾ Ğ·Ğ°Ğ³Ñ€ÑƒĞ·Ğ¸Ñ‚Ğµ Ğ¸Ğ· Ñ„Ğ°Ğ¹Ğ»Ğ°.\n");system("pause");}
+                if(saveToFile(list)){printf("Èçäàíèÿ óñïåøíî ñîõğàíåíû.\n");system("pause");}
             }
+            else{printf("Ñïèñîê ïóñò, ñîçäàéòå ñïèñîê èçäàíèé âğó÷íóş ëèáî çàãğóçèòå èç ôàéëà.\n");system("pause");}
 
 
 
             ;break;
-        case 7:NULL;break;
-        case 8:return 0;
+        case 7:
+            system("cls");
+            list = loadToList(list);
+            /*if(loadToList(list)){
+                printf("Ñïèñîê èçäàíèé óñïåøíî çàãğóæåí.\n");
+                system("pause");
+                }
+            else{
+                printf("Ôàéë ñ òàêèì èìåíåì íå íàéäåí.\n");
+                system("pause");
+                }*/
+            break;
+        case 8:
+            quit(list);
+            return 0;
         default:
             system("cls");
-            printf("ĞĞµĞ²ĞµÑ€Ğ½Ğ°Ñ ĞºĞ¾Ğ¼Ğ°Ğ½Ğ´Ğ°\n");
+            printf("Íåâåğíàÿ êîìàíäà\n");
             system("pause");
             break;
         }
@@ -128,15 +140,13 @@ int main(void){
 
 DLinkedList* createLinkedList(){
     DLinkedList *tmp =(DLinkedList*)malloc(sizeof(DLinkedList));
-    tmp ->size = 0;//Ğ£ĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»ÑŒ Ğ½Ğ° Ñ€Ğ°Ğ·Ğ¼ĞµÑ€
-    tmp->head = tmp->tail = NULL;//Ğ˜Ğ½Ğ¸Ñ†Ğ¸Ğ°Ğ»Ğ¸Ğ·Ğ°Ñ†Ğ¸Ñ ÑƒĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»Ñ Ğ½Ğ° Ğ³Ğ¾Ğ»Ğ¾Ğ²Ñƒ ÑĞ¿Ğ¸ÑĞºĞ° Ğ¸ Ñ…Ğ²Ğ¾ÑÑ‚
+    tmp->head = tmp->tail = NULL;//Èíèöèàëèçàöèÿ óêàçàòåëÿ íà ãîëîâó ñïèñêà è õâîñò
     pushNode(tmp);
-    tmp->size ++;
     return tmp;
 }
 
 void showDLList(DLinkedList* list){
-    Node *tmp = list->head;//Ğ£ĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»ÑŒ ÑÑÑ‹Ğ»Ğ°ĞµÑ‚ÑÑ Ğ½Ğ° Ğ¿ĞµÑ€Ğ²Ñ‹Ğ¹ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚
+    Node *tmp = list->head;//Óêàçàòåëü ññûëàåòñÿ íà ïåğâûé ıëåìåíò
     int counter = 1;
     while(tmp){
         printf("%d.%s\n%s\n%d\n\n",counter,tmp->title,tmp->type,tmp->price);
@@ -152,29 +162,29 @@ void pushNode(DLinkedList* list){
     int choice;
     int price;
     if(tmp == NULL){
-        printf("ĞĞµÑ…Ğ²Ğ°Ñ‚ĞºĞ° Ğ¿Ğ°Ğ¼ÑÑ‚Ğ¸.");
+        printf("Íåõâàòêà ïàìÿòè.");
         exit(2);
     }
-    printf("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ½Ğ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ Ğ½Ğ° Ğ°Ğ½Ğ³Ğ»Ğ¸Ğ¹ÑĞºĞ¾Ğ¼ Ğ±ĞµĞ· Ğ¿Ñ€Ğ¾Ğ±ĞµĞ»Ğ¾Ğ²: ");
+    printf("Ââåäèòå íàçâàíèå èçäàíèÿ íà àíãëèéñêîì áåç ïğîáåëîâ: ");
     scanf("%s",&tmp->title);
     while(choice != 1 && choice !=2){
         system("cls");
-        printf("Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¸Ğ¿ Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ:\n1. Ğ“Ğ°Ğ·ĞµÑ‚Ğ°\n2. Ğ–ÑƒÑ€Ğ½Ğ°Ğ»\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾:");
+        printf("Âûáåğèòå òèï èçäàíèÿ:\n1. Ãàçåòà\n2. Æóğíàë\nÂâåäèòå ÷èñëî:");
         scanf("%d",&choice);
         printf("%d",choice);
         if(choice != 1 && choice != 2){
-            printf("ĞĞµĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ñ‹Ğ¹ Ğ²Ğ²Ğ¾Ğ´.\n");
+            printf("Íåêîğğåêòíûé ââîä.\n");
             system("pause");
         }
         else if(choice == 1){
-            strcpy(tmp->type,"Ğ“Ğ°Ğ·ĞµÑ‚Ğ°");
+            strcpy(tmp->type,"Ãàçåòà");
         }
         else if (choice == 2){
-            strcpy(tmp->type,"Ğ–ÑƒÑ€Ğ½Ğ°Ğ»");
+            strcpy(tmp->type,"Æóğíàë");
         }
     }
     system("cls");
-    printf("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ†ĞµĞ½Ñƒ: ");
+    printf("Ââåäèòå öåíó: ");
     scanf("%d",&price);
     tmp->price = price;
     if(list->head == NULL){
@@ -190,17 +200,17 @@ void insertIn(DLinkedList* list, Node* temp){
     Node *temp2 = list->head;
     while(temp2){
         if(strcmp(temp->title,temp2->title) == 1){
-            if(temp2->next == NULL){    //Ğ•ÑĞ»Ğ¸ Ñ‚ĞµĞºÑƒÑ‰Ğ¸Ğ¹ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ ÑĞ²Ğ»ÑĞµÑ‚ÑÑ Ğ¿Ğ¾ÑĞ»ĞµĞ´Ğ½Ğ¸Ğ¼(Ñ…Ğ²Ğ¾ÑÑ‚)
+            if(temp2->next == NULL){    //Åñëè òåêóùèé ıëåìåíò ÿâëÿåòñÿ ïîñëåäíèì(õâîñò)
                 temp->next = NULL;
                 temp->prev = list->tail;
                 temp2->next = temp;
                 list->tail = temp;
                 return;
             }
-            else temp2 = temp2->next;   //Ğ˜Ğ½Ğ°Ñ‡Ğµ Ğ¿ĞµÑ€ĞµÑ…Ğ¾Ğ´ Ğ½Ğ° ÑĞ»ĞµĞ´ÑƒÑÑ‰Ğ¸Ğ¹ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚
+            else temp2 = temp2->next;   //Èíà÷å ïåğåõîä íà ñëåäóşùèé ıëåìåíò
         }
         else{
-            if(list->head==temp2){  // Ğ•ÑĞ»Ğ¸ Ñ‚ĞµĞºÑƒÑ‰Ğ¸Ğ¹ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ ÑĞ²Ğ»ÑĞµÑ‚ÑÑ Ğ¿ĞµÑ€Ğ²Ñ‹Ğ¼(Ğ³Ğ¾Ğ»Ğ¾Ğ²Ğ°)
+            if(list->head==temp2){  // Åñëè òåêóùèé ıëåìåíò ÿâëÿåòñÿ ïåğâûì(ãîëîâà)
                 temp->next = list->head;
                 temp->prev = NULL;
                 list->head->prev = temp;
@@ -208,7 +218,7 @@ void insertIn(DLinkedList* list, Node* temp){
                 return;
             }
             else{
-                temp->next = temp2; // Ğ•ÑĞ»Ğ¸ Ñ‚ĞµĞºÑƒÑ‰Ğ¸Ğ¹ ÑĞµĞ»ĞµĞ¼ĞµĞ½Ñ‚ Ñ€Ğ°ÑĞ¿Ğ¾Ğ»Ğ¾Ğ¶ĞµĞ½ Ğ¼ĞµĞ¶Ğ´Ñƒ ÑĞ¾ÑĞµĞ´Ğ½Ğ¸Ñ… ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ğ¾Ğ²
+                temp->next = temp2; // Åñëè òåêóùèé ıåëåìåíò ğàñïîëîæåí ìåæäó ñîñåäíèõ ıëåìåíòîâ
                 temp->prev = temp2->prev;
                 temp2->prev->next = temp;
                 temp2->prev = temp;
@@ -221,36 +231,36 @@ void insertIn(DLinkedList* list, Node* temp){
 int findCorrect(DLinkedList* list, char* title){
     Node* tmp = list->head;
     while(tmp){
-        if(strcmp(tmp->title,title)==0){ // Ğ•ÑĞ»Ğ¸ Ğ½Ğ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ Ğ² ÑĞ¿Ğ¸ÑĞºĞµ Ğ¸ Ğ² Ğ¾Ğ±Ñ€Ğ°Ğ·Ñ†Ğµ Ñ€Ğ°Ğ²Ğ½Ñ‹ Ñ‚Ğ¾ Ğ¸Ğ·Ğ¼ĞµĞ½Ğ¸Ñ‚ÑŒ Ğ·Ğ°Ğ¿Ğ¸ÑÑŒ
+        if(strcmp(tmp->title,title)==0){ // Åñëè íàçâàíèå èçäàíèÿ â ñïèñêå è â îáğàçöå ğàâíû òî èçìåíèòü çàïèñü
             int choice;
             while(1 != 0){
                 system("cls");
-                printf("Ğ—Ğ°Ğ¿Ğ¸ÑÑŒ Ğ½Ğ°Ğ¹Ğ´ĞµĞ½Ğ°.\nĞ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ğ¿Ğ¾Ğ»Ğµ ĞºĞ¾Ñ‚Ğ¾Ñ€Ğ¾Ğµ Ñ…Ğ¾Ñ‚Ğ¸Ñ‚Ğµ Ğ¸Ğ·Ğ¼ĞµĞ½Ğ¸Ñ‚ÑŒ\n");
-                printf("1. ĞĞ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ\n2. Ğ¢Ğ¸Ğ¿ Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ\n3. Ğ¦ĞµĞ½Ğ°\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾: ");
+                printf("Çàïèñü íàéäåíà.\nÂûáåğèòå ïîëå êîòîğîå õîòèòå èçìåíèòü\n");
+                printf("1. Íàçâàíèå\n2. Òèï èçäàíèÿ\n3. Öåíà\nÂâåäèòå ÷èñëî: ");
                 scanf("%d",&choice);
                 if(choice != 1 && choice != 2 && choice !=3 ){
-                    printf("ĞĞµĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ñ‹Ğ¹ Ğ²Ğ²Ğ¾Ğ´.");
+                    printf("Íåêîğğåêòíûé ââîä.");
                     system("pause");
                 }
                 else{
                     if(choice == 1){
                         char name[SIZE];
-                        printf("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ½Ğ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ Ğ½Ğ° Ğ°Ğ½Ğ³Ğ»Ğ¸Ğ¹ÑĞºĞ¾Ğ¼ Ğ±ĞµĞ· Ğ¿Ñ€Ğ¾Ğ±ĞµĞ»Ğ¾Ğ²: ");
+                        printf("Ââåäèòå íàçâàíèå èçäàíèÿ íà àíãëèéñêîì áåç ïğîáåëîâ: ");
                         scanf("%s",&name);
                         strcpy(tmp->title,name);
                     }
                     else if (choice == 2){
                         system("cls");
-                        printf("Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¸Ğ¿ Ğ¸Ğ·Ğ´Ğ°Ğ½Ğ¸Ñ:\n1. Ğ“Ğ°Ğ·ĞµÑ‚Ğ°\n2. Ğ–ÑƒÑ€Ğ½Ğ°Ğ»\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾:");
+                        printf("Âûáåğèòå òèï èçäàíèÿ:\n1. Ãàçåòà\n2. Æóğíàë\nÂâåäèòå ÷èñëî:");
                         int choice2;
                         scanf("%d",&choice2);
-                        if(choice2 == 1)strcpy(tmp->type,"Ğ“Ğ°Ğ·ĞµÑ‚Ğ°");
-                        else if (choice2 == 2)strcpy(tmp->type, "Ğ–ÑƒÑ€Ğ½Ğ°Ğ»");
-                        else{printf("ĞĞµĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ñ‹Ğ¹ Ğ²Ğ²Ğ¾Ğ´.\n");system("pause");continue;}
+                        if(choice2 == 1)strcpy(tmp->type,"Ãàçåòà");
+                        else if (choice2 == 2)strcpy(tmp->type, "Æóğíàë");
+                        else{printf("Íåêîğğåêòíûé ââîä.\n");system("pause");continue;}
                     }
                     else if (choice == 3){
                         int price;
-                        printf("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ†ĞµĞ½Ñƒ: ");
+                        printf("Ââåäèòå öåíó: ");
                         scanf("%d",&price);
                         tmp->price = price;
                     }
@@ -266,16 +276,16 @@ int deleteNode(DLinkedList* list, char* title){
     Node* tmp = list->head;
     while(tmp){
         if(strcmp(tmp->title,title) == 0){
-            if(tmp->prev){  //Ğ•ÑĞ»Ğ¸ Ğ¿ĞµÑ€ĞµĞ´ ÑƒĞ´Ğ°Ğ»ÑĞµĞ¼Ñ‹Ğ¼ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ğ¾Ğ¼ ĞµÑÑ‚ÑŒ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚
+            if(tmp->prev){  //Åñëè ïåğåä óäàëÿåìûì ıëåìåíòîì åñòü ıëåìåíò
                 tmp->prev->next = tmp->next;
             }
-            if(tmp->next){ //Ğ•ÑĞ»Ğ¸ Ğ¿Ğ¾ÑĞ»Ğµ ÑƒĞ´Ğ°Ğ»ÑĞµĞ¼Ğ¾Ğ³Ğ¾ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ğ° ĞµÑÑ‚ÑŒ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚
+            if(tmp->next){ //Åñëè ïîñëå óäàëÿåìîãî ıëåìåíòà åñòü ıëåìåíò
                 tmp->next->prev = tmp->prev;
             }
-            if(!tmp->prev){//Ğ•ÑĞ»Ğ¸ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ ÑĞ²Ğ»ÑĞµÑ‚ÑÑ Ğ¿ĞµÑ€Ğ²Ñ‹Ğ¼(Ğ³Ğ¾Ğ»Ğ¾Ğ²Ğ°)
+            if(!tmp->prev){//Åñëè ıëåìåíò ÿâëÿåòñÿ ïåğâûì(ãîëîâà)
                 list->head = tmp->next;
             }
-            if(!tmp->next){//Ğ•ÑĞ»Ğ¸ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ ÑĞ²Ğ»ÑĞµÑ‚ÑÑ Ğ¿Ğ¾ÑĞ»ĞµĞ´Ğ½Ğ¸Ğ¼(Ñ…Ğ²Ğ¾ÑÑ‚)
+            if(!tmp->next){//Åñëè ıëåìåíò ÿâëÿåòñÿ ïîñëåäíèì(õâîñò)
                 list->tail = tmp->prev;
             }
             free(tmp);
@@ -290,21 +300,80 @@ int saveToFile(DLinkedList* list){
     FILE *output;
     Node *tmp = list->head;
     char file[SIZE];
-    printf("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ¸Ğ¼Ñ_Ñ„Ğ°Ğ¹Ğ»Ğ°.txt: ");
+    printf("Ââåäèòå èìÿ_ôàéëà.txt: ");
     scanf("%s",file);
     output = fopen(file,"wb");
+    int counter = 1;
     if(output){
-        while(tmp){
-           fwrite(tmp->title,sizeof(tmp->title),1,output);
-           fwrite(tmp->type,sizeof(tmp->type),1,output);
-           fwrite(&tmp->price,sizeof(int),1,output);
+        while(tmp != NULL){
+           printf("%d",counter) ;
+           fwrite(tmp,sizeof(Node),1,output);
            tmp = tmp->next;
+            counter++;
         }
         fclose(output);
         return 1;
     }
-    else printf("ĞÑˆĞ¸Ğ±ĞºĞ°! ĞĞµ ÑƒĞ´Ğ°Ğ»Ğ¾ÑÑŒ Ğ¿Ñ€Ğ¾Ñ‡Ğ¸Ñ‚Ğ°Ñ‚ÑŒ Ñ„Ğ°Ğ¹Ğ»\n");
+    else printf("Îøèáêà! Íå óäàëîñü ïğî÷èòàòü ôàéë\n");
     system("pause");
     fclose(output);
     return 0;
 }
+
+DLinkedList* loadToList(DLinkedList* list){
+    if(list != NULL){ //Î÷èñòêà ñïèñêà åñëè îí ñóùåñòâóåò
+    Node* tmp = (list)->head;
+        while(tmp){
+            list->head = list->head->next;
+            free(tmp);
+            tmp = list->head;
+        }
+        free(list);
+        list = NULL;
+    }
+    list = (DLinkedList*) malloc(sizeof(DLinkedList)); //Âûäåëåíèå ïàìÿòè ïîä íîâûé ñïèñîê
+    list->head = NULL;
+    list->tail = NULL;
+    FILE *input;
+    char file[SIZE];
+    printf("Ââåäèòå èìÿ_ôàéëà.txt: ");
+    scanf("%s",file);
+    input = fopen(file,"rb");
+    while(!feof(input)){
+        printf("a\n");
+
+        Node *tmp = (Node*) malloc(sizeof(Node));
+        if(fread(tmp,sizeof(Node),1,input)){
+        printf("%s\t%s\t%d\n",tmp->title,tmp->type,tmp->price);
+        if(list->head == NULL && list->tail == NULL){
+            list->head = tmp;
+            list->tail = tmp;
+            tmp->next=NULL;
+            tmp->prev = NULL;
+        }
+        else insertIn(list,tmp);
+        }
+
+
+    }
+    return list;
+}
+
+void quit(DLinkedList *list){
+    if(list != NULL){
+        Node *tmp = list->head;
+        while(tmp){
+            list->head = list->head->next;
+            free(tmp);
+            tmp = list->head;
+        }
+        free(list);
+        list = NULL;
+    }
+    else return;
+}
+
+
+
+
+
